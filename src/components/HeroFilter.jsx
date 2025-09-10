@@ -304,8 +304,8 @@ function HeroFilter({ onResults }) {
       {/* FILTER BAR (desktop always visible; mobile collapsible) */}
       <div className="relative -mt-10 flex justify-center">
         <div
-          className={`w-full max-w-[80%] rounded-[46px] bg-white shadow-[0_18px_36px_rgba(0,0,0,0.08)]
-                      px-7 py-7 flex flex-wrap items-center gap-3 justify-between
+          className={`w-full max-w-[80%] rounded-full bg-white shadow-[0_18px_36px_rgba(0,0,0,0.08)]
+                      px-12 py-8 flex flex-wrap items-center gap-3 justify-between
                       hf-collapsible  ${isMobileFiltersOpen ? "open" : ""}`}
         >
           <div

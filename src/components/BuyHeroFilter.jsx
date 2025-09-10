@@ -189,8 +189,8 @@ export default function BuyHeroFilter({ onResults }) {
       {/* FILTER BAR (alignment kept; now with custom selects and mobile collapse) */}
       <div className="relative py-4 -mt-16 flex justify-center">
         <div
-          className={`w-full max-w-[80%] rounded-[46px] bg-white shadow-[0_18px_36px_rgba(0,0,0,0.08)]
-                      px-6 md:px-4 py-12 md:py-12 flex flex-wrap items-center gap-3 justify-between
+          className={`w-full max-w-[80%] rounded-full bg-white shadow-[0_18px_36px_rgba(0,0,0,0.08)]
+                      px-12 md:px-12 py-12 md:py-8 flex flex-wrap items-center gap-3 justify-between
                       hf-collapsible ${isMobileFiltersOpen ? "open" : ""}`}
         >
           {/* Purpose */}

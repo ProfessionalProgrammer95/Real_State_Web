@@ -68,7 +68,7 @@ function FeaturesSection() {
 
       {/* Featured Property */}
       <div className="mt-16  m-auto w-[95%] ">
-        <div className="flex justify-between property-header items-center mb-24">
+        <div className="flex justify-between property-header items-center mb-12">
           <h2 className="text-[40px] text-700 font-extrabold text-[var(--clr-primary)]">
             Featured Property
           </h2>

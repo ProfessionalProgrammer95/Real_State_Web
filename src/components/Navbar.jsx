@@ -45,7 +45,7 @@ export default function Navbar() {
         "
         style={{ backgroundColor: "var(--clr-primary)" }}
       >
-        <span className="hidden md:inline">About Us</span>
+        <span className="hidden md:inline text-white">About Us</span>
         <Icon icon="ei:arrow-down" className="w-[25px] h-[25px] rotate-[270deg] text-white"></Icon>
 
       </Link>
