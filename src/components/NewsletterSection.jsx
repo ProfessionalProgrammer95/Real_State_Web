@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 
-export default function NewsletterSection() {
+function NewsletterSection() {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("Select User Type");
     const options = ["Buyer", "Renter", "Agent"];
@@ -28,13 +28,8 @@ export default function NewsletterSection() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-[50px] flex items-center justify-between 
-                   rounded-[8px] px-4 text-left bg-white
-                   border border-[var(--clr-lightgray)] 
-                   outline-none"
-        style={{
-          boxShadow: "0px 2px 4px 0px rgba(0, 0, 16, 0.2)",
-        }}
+        className="w-full h-[50px] flex items-center justify-between rounded-[8px] px-4 text-left bg-white border border-[var(--clr-lightgray)] outline-none"
+        style={{ boxShadow: "0px 2px 4px 0px rgba(0, 0, 16, 0.2)" }}
       >
         <span className="text-[16px] text-[var(--clr-input-text)]">
           {selected}
@@ -48,8 +43,7 @@ export default function NewsletterSection() {
       {/* Dropdown list */}
       {open && (
         <ul
-          className="absolute left-0 right-0 mt-1 bg-white rounded-[8px] border 
-                     border-[var(--clr-lightgray)] shadow-lg z-10"
+          className="absolute left-0 right-0 mt-1 bg-white rounded-[8px] border border-[var(--clr-lightgray)] shadow-lg z-10"
         >
           {options.map((option) => (
             <li
@@ -154,3 +148,4 @@ export default function NewsletterSection() {
     </section>
   );
 }
+export default NewsletterSection;

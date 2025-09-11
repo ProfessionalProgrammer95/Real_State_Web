@@ -1,32 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
-
+ import useProperties from "../hooks/useProperties";
 function RentalSection() {
-  const [all, setAll] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState("");
+  const { data: all, loading, err } = useProperties();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(
-          "https://68b826bcb715405043274639.mockapi.io/api/properties/PropertyListing"
-        );
-        const data = await res.json();
-        setAll(Array.isArray(data) ? data : []);
-      } catch (e) {
-        setErr("Failed to load properties.");
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
+ 
 
-  // derive "For Rent" (mock logic: even ids)
   const isRent = (id) => Number(id) % 2 === 0;
 
-    // ---------- STATIC IMAGES FROM /assets ----------
   const localImages = [
     "/assets/rental1.jpg",
     "/assets/rental2.jpg",

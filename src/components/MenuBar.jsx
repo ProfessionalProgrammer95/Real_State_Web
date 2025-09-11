@@ -4,20 +4,11 @@ import { Icon } from "@iconify/react";
 
 function MenuBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const linkBase =
-    "relative pb-1 text-[15px] transition-colors";
-  const underline =
-    "after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] " +
-    "after:bg-[var(--clr-primary)] after:rounded-full " +
-    "after:transition-all after:duration-300 after:w-0 hover:after:w-full";
+  const linkBase ="relative pb-1 text-[15px] transition-colors";
+  const underline ="after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] " + "after:bg-[var(--clr-primary)] after:rounded-full " + "after:transition-all after:duration-300 after:w-0 hover:after:w-full";
 
   const linkClass = ({ isActive }) =>
-    [
-      linkBase,
-      underline,
-      isActive ? "text-[var(--clr-primary)] after:w-full" : "text-[var(--clr-text)]",
-    ].join(" ");
+    [linkBase, underline, isActive ? "text-[var(--clr-primary)] after:w-full" : "text-[var(--clr-text)]",].join(" ");
 
   return (
     <header className="bg-white mb-5">

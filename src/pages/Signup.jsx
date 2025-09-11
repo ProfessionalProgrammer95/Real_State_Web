@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 
 function Signup() {
@@ -81,12 +82,8 @@ function Signup() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                     />
-                    <span
-                      className="msr absolute right-3 top-1/2 -translate-y-1/2 opacity-70"
-                      aria-hidden
-                    >
-                      mail
-                    </span>
+                  <Icon icon="iconamoon:email-thin" className="absolute right-3 top-1/2 -translate-y-1/2 opacity-70 w-[24px] h-[24px]" />
+                    
                   </div>
                 </div>
 
@@ -109,7 +106,7 @@ function Signup() {
                       className="absolute right-1.5 top-1/2 -translate-y-1/2 h-9 w-9 grid place-items-center rounded-md hover:bg-gray-100"
                       aria-label={showPassword ? "Hide password" : "Show password"}
                     >
-                      <span className="msr opacity-80" aria-hidden>
+                      <span className="msr opacity-80 w-[24px] h-[24px]" aria-hidden>
                         {showPassword ? "visibility_off" : "visibility"}
                       </span>
                     </button>
@@ -135,7 +132,7 @@ function Signup() {
                       className="absolute right-1.5 top-1/2 -translate-y-1/2 h-9 w-9 grid place-items-center rounded-md hover:bg-gray-100"
                       aria-label={showConfirm ? "Hide password" : "Show password"}
                     >
-                      <span className="msr opacity-80" aria-hidden>
+                      <span className="msr opacity-80 w-[24px] h-[24px]" aria-hidden>
                         {showConfirm ? "visibility_off" : "visibility"}
                       </span>
                     </button>

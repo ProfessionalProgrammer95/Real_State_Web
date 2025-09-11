@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
+import useProperties from "../hooks/useProperties";
+  
 
 function PropertyCard({ filters }) {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState("");
+  const { data: items, loading, err } = useProperties();
   const [open, setOpen] = useState(false);
-const [active, setActive] = useState(null);
+  const [active, setActive] = useState(null);
 
 
 
@@ -19,59 +19,41 @@ const fullLocation = (p) =>
   [p?.city, p?.state, p?.country].filter(Boolean).join(", ") || "—";
 
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(
-          "https://68b826bcb715405043274639.mockapi.io/api/properties/PropertyListing"
-        );
-        const data = await res.json();
-        setItems(Array.isArray(data) ? data : []);
-      } catch (e) {
-        setErr("Failed to load featured properties.");
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
 
+const getImg = (data) =>
+  data?.image || data?.photo || data?.thumbnail || data?.avatar || "/assets/fallback.jpg";
 
- // helpers
-const getImg = (p) =>
-  p?.image || p?.photo || p?.thumbnail || p?.avatar || "/assets/fallback.jpg";
-
-const getTitle = (p) => p?.name || "Green Villa";
-const getCity = (p) =>
-   p?.state || "Uttar Pradesh";
-const getDesc = (p) =>
-  p?.description ||
+const getTitle = (data) => data?.name || "Green Villa";
+const getCity = (data) =>
+   data?.state || "Uttar Pradesh";
+const getDesc = (data) =>
+  data?.description ||
   "Spacious 3BHK apartment in a prime location with modern amenities.";
-const getPrice = (p) => {
-  const val = p?.price ?? p?.amount ?? p?.cost;
-  const n = Number(val);
-  return isFinite(n) && n > 0 ? n : 450000;
+const getPrice = (data) => {
+  const value = data?.price ?? data?.amount ?? data?.cost;
+  const num = Number(value);
+  return isFinite(num) && num > 0 ? num : 450000;
 };
 
   // --- apply filters to API data ---
   const filtered = useMemo(() => {
-    return items.filter((p) => {
-      if (filters?.purpose && p.purpose !== filters.purpose) return false;
-      if (filters?.ptype && p.type !== filters.ptype) return false;
-      if (filters?.location && p.city !== filters.location) return false;
+    return items.filter((data) => {
+      if (filters?.purpose && data.purpose !== filters.purpose) return false;
+      if (filters?.ptype && data.type !== filters.ptype) return false;
+      if (filters?.location && data.city !== filters.location) return false;
       return true;
     });
   }, [items, filters]);
 
-  // --- pick 2 items for featured ---
+
   const featured = [
     {
-      img: "/assets/buyproperty-image1.png", // static
-      data: filtered[0] || items[0] || {}, // fill from filter/API
+      img: "/assets/buyproperty-image1.png",
+      data: filtered[0] || items[0] || {}, 
     },
     {
-      img: "/assets/buyproperty-image2.png", // static
-      data: filtered[1] || items[1] || {}, // fill from filter/API
+      img: "/assets/buyproperty-image2.png", 
+      data: filtered[1] || items[1] || {}, 
     },
   ];
   function ItemRow({ icon, label, value }) {
@@ -136,7 +118,7 @@ function StatCard({ label, value }) {
               </div>
 
             {/* === Floating card === */}
-            <div className="absolute left-12 bottom-0 floating-card">
+            <div className="absolute mb-4 left-12 bottom-0 floating-card">
             <div
                 className="
                 w-[590px] h-[200px]
@@ -169,7 +151,7 @@ function StatCard({ label, value }) {
                 <p className="text-[16px] text-[var(--clr-muted)] leading-[25px] mb-3 line-clamp-2 max-w-[400px]">
                 {getDesc(d)}
                 </p>
-                <div className="w-[590px] p-0 m-0 -ml-6 h-0 border-[2px] border-[#00000033] mb-4 card-underline"></div>
+                <div className="w-[540px] p-0 m-0 -ml-6 h-0 border-[2px] border-[#00000033] mb-4 card-underline"></div>
                 {/* Price + CTA */}
                 <div className="flex items-center justify-between">
                 <div className="text-[24px] font-semibold text-[var(--clr-text)]">
@@ -402,9 +384,7 @@ function StatCard({ label, value }) {
     </div>
   </div>
 )}
-
-
-    </section>
+ </section>
 
     
   );

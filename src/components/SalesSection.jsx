@@ -1,32 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
+import useProperties from "../hooks/useProperties";
 
 function SalesSection() {
-  const [all, setAll] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState("");
+  const { data: all, loading, err } = useProperties();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(
-          "https://68b826bcb715405043274639.mockapi.io/api/properties/PropertyListing"
-        );
-        const data = await res.json();
-        setAll(Array.isArray(data) ? data : []);
-      } catch (e) {
-        setErr("Failed to load properties.");
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
+  
 
-  // derive "For Sale" (mock logic)
   const isSale = (id) => Number(id) % 2 === 1;
 
-  // ---------- STATIC IMAGES FROM /assets ----------
   const localImages = [
     "/assets/saleproperty-1.jpg",
     "/assets/saleproperty-2.jpg",

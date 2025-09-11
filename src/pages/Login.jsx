@@ -1,9 +1,9 @@
-// src/pages/Login.jsx
 import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,7 +14,6 @@ function Login() {
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  // Prefill email if "remember me" was set
   useEffect(() => {
     const saved = localStorage.getItem("remember_email");
     if (saved) {
@@ -34,7 +33,7 @@ function Login() {
       } else {
         localStorage.removeItem("remember_email");
       }
-      navigate("/"); // go to homepage after login
+      navigate("/"); 
     } catch (err) {
       setError(err?.message || "Login failed. Please try again.");
     } finally {
@@ -61,7 +60,7 @@ function Login() {
 
           {/* Content */}
           <div className="lg:flex">
-            {/* LEFT: form (keep same basis/spacing so alignment doesn’t change) */}
+            {/* LEFT: form  */}
             <section className="px-0 py-0 login flex flex-col justify-center items-center lg:basis-[40%] lg:max-w-none">
               <h1 className="text-[34px] pb-4 sm:text-[32px] font-extrabold tracking-tight text-center">
                 Log In
@@ -81,9 +80,7 @@ function Login() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                     />
-                    <span className="msr absolute right-3 top-1/2 -translate-y-1/2 opacity-70">
-                      mail
-                    </span>
+                    <Icon icon="iconamoon:email-thin" className="absolute right-3 top-1/2 -translate-y-1/2 opacity-70 w-[24px] h-[24px]" />
                   </div>
                 </div>
 
@@ -106,7 +103,7 @@ function Login() {
                       className="absolute right-1.5 top-1/2 -translate-y-1/2 h-9 w-9 grid place-items-center rounded-md hover:bg-gray-100"
                       aria-label={showPassword ? "Hide password" : "Show password"}
                     >
-                      <span className="msr opacity-80">
+                      <span className="msr msr1 opacity-80 w-[24px] h-[24px]" aria-hidden>
                         {showPassword ? "visibility_off" : "visibility"}
                       </span>
                     </button>
@@ -155,7 +152,7 @@ function Login() {
                   </button>
                 </div>
 
-                {/* Divider + Socials (layout only; you can wire later) */}
+                {/* Divider + Socials  */}
                 <div className="mt-4">
                   <div className="flex items-center gap-4">
                     <div className="flex-1 h-px bg-gray-200" />
